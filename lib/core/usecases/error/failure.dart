@@ -19,3 +19,8 @@ class NotFoundFailure extends Failure {
   @override
   String get message => "Registro não encontrado.";
 }
+
+class PasswordWrongFailure extends Failure {
+  @override
+  String get message => "Senha incorreta.";
+}

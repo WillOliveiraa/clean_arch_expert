@@ -1,3 +1,4 @@
+import 'package:clean_arch_expert/core/usecases/error/failure.dart';
 import 'package:clean_arch_expert/features/auth/domain/entities/user.dart';
 import 'package:clean_arch_expert/features/auth/domain/repositories/do_login_repository.dart';
 import 'package:clean_arch_expert/features/auth/domain/usecases/do_login.dart';
@@ -28,17 +29,17 @@ void main() {
     verifyNoMoreInteractions(_doLoginRepository);
   });
 
-  test("Deve realizar o login", () async {
+  test("Deve obter um erro de senha inválida ao tentar logar", () async {
     when(() => _doLoginRepository.doLogin(
-        email: "email@teste.com",
-        password: "123123")).thenAnswer((_) async => Right(tUser));
+            email: "email@teste.com", password: "123123"))
+        .thenAnswer((_) async => Left(PasswordWrongFailure()));
 
     var result = await _doLogin(
       DoLoginParams(email: "email@teste.com", password: "123123"),
     );
 
-    expect(result, isA<Right>());
-    expect(result, Right(tUser));
+    expect(result, isA<Left>());
+    expect(result, Left(PasswordWrongFailure()));
     verify(() => _doLoginRepository.doLogin(
         email: "email@teste.com", password: "123123")).called(1);
     verifyNoMoreInteractions(_doLoginRepository);

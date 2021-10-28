@@ -1,5 +1,5 @@
-import 'package:clean_arch_expert/features/auth/domain/entities/user.dart';
+import 'package:clean_arch_expert/features/auth/data/models/user_model.dart';
 
 abstract class DoLoginDatasource {
-  Future<User> doLogin({required String email, required String password});
+  Future<UserModel> doLogin({required String email, required String password});
 }

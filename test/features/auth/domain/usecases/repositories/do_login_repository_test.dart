@@ -1,7 +1,7 @@
 import 'package:clean_arch_expert/core/usecases/error/failure.dart';
 import 'package:clean_arch_expert/features/auth/data/datasources/do_login_datasource.dart';
+import 'package:clean_arch_expert/features/auth/data/models/user_model.dart';
 import 'package:clean_arch_expert/features/auth/data/repositories/do_login_repository_impl.dart';
-import 'package:clean_arch_expert/features/auth/domain/entities/user.dart';
 import 'package:clean_arch_expert/features/auth/domain/repositories/do_login_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -44,7 +44,7 @@ void main() {
   });
 }
 
-var tUser = User(
+var tUser = UserModel(
   name: "Nome user",
   email: "email@teste.com",
   bornDate: DateTime.now(),

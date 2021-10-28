@@ -1,10 +1,9 @@
-import 'package:clean_arch_expert/features/auth/domain/entities/user.dart';
-
+import 'package:clean_arch_expert/features/auth/data/models/user_model.dart';
 import 'do_login_datasource.dart';
 
 class DoLoginDatasourceFirebase implements DoLoginDatasource {
   @override
-  Future<User> doLogin({required String email, required String password}) {
+  Future<UserModel> doLogin({required String email, required String password}) {
     // TODO: implement doLogin
     throw UnimplementedError();
   }

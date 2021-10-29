@@ -1,3 +1,4 @@
+import 'package:clean_arch_expert/core/usecases/error/failure.dart';
 import 'package:clean_arch_expert/features/auth/data/models/user_model.dart';
 import 'package:dio/dio.dart';
 
@@ -16,8 +17,17 @@ class DoLoginDatasourceApi implements DoLoginDatasource {
           data: {"email": email, "password": password});
 
       return UserModel.fromMap(response.data);
+
+      // return Future.value(UserModel.fromMap(tkUserApi));
     } catch (e) {
-      throw e;
+      throw ServerFailure();
     }
   }
 }
+
+var tkUserApi = {
+  "name": "Nome",
+  "bornDate": DateTime(2021, 6, 1).toIso8601String(),
+  "pictureUrl": "https://test.com/photo.png",
+  "email": "email@email.com"
+};

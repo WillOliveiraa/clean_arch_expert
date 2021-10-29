@@ -1,22 +1,23 @@
-import 'package:clean_arch_expert/core/usecases/error/failure.dart';
 import 'package:clean_arch_expert/features/auth/data/models/user_model.dart';
+import 'package:dio/dio.dart';
 
 import 'do_login_datasource.dart';
 
 class DoLoginDatasourceApi implements DoLoginDatasource {
+  final Dio _dio;
+
+  DoLoginDatasourceApi(this._dio);
+
   @override
-  Future<UserModel> doLogin({required String email, required String password}) {
+  Future<UserModel> doLogin(
+      {required String email, required String password}) async {
     try {
-      return Future.value(UserModel.fromMap(tUserApi));
+      var response = await _dio.post("http://www.api.com/user",
+          data: {"email": email, "password": password});
+
+      return UserModel.fromMap(response.data);
     } catch (e) {
-      throw ServerFailure();
+      throw e;
     }
   }
 }
-
-var tUserApi = {
-  "name": "Will Oliveira",
-  "bornDate": DateTime.now().toIso8601String(),
-  "pictureUrl": "urlUser",
-  "email": "email@teste.com",
-};
